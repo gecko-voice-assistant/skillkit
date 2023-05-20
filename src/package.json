@@ -1,20 +1,26 @@
 {
-  "name": "gecko-skillkit",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gecko-voice-assistant/skillkit.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gecko-voice-assistant/skillkit/issues"
-  },
-  "homepage": "https://github.com/gecko-voice-assistant/skillkit#readme"
+    "name": "gecko-skillkit",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "lint": "eslint --fix .",
+        "format": "prettier --write ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/gecko-voice-assistant/skillkit.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/gecko-voice-assistant/skillkit/issues"
+    },
+    "homepage": "https://github.com/gecko-voice-assistant/skillkit#readme",
+    "devDependencies": {
+        "eslint": "^8.40.0",
+        "eslint-config-prettier": "^8.8.0",
+        "prettier": "^2.8.8"
+    }
 }
