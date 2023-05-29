@@ -18,6 +18,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 let configObject = {
     sayFunction: () => {},
     answerFunction: () => {},
+    optionsFunction: () => {},
+    rawTokenFunction: () => {},
+    mqttPublishFunction: () => {},
+    mqttSubscribeFunction: () => {}
 };
 
 function setConfigData(data) {
@@ -36,8 +40,28 @@ function generateAnswer(answerIndex, ...args) {
     return configObject["answerFunction"](answerIndex, ...args);
 }
 
+function fail(err){
+    say(err);
+}
+
+function getAllOptions(){
+    return configObject["optionsFunction"]();
+}
+
+function publishMQTT(topic = "", payload) {
+    configObject["mqttPublishFunction"](topic, JSON.stringify(payload));
+}
+
+function subscribeMQTT(topic = "", callback = () => {}){
+    configObject["mqttSubscribeFunction"](topic, callback);
+}
+
 module.exports = {
     setConfigData,
     say,
     generateAnswer,
+    fail,
+    getAllOptions,
+    publishMQTT,
+    subscribeMQTT
 };
