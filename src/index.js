@@ -21,7 +21,7 @@ let configObject = {
     optionsFunction: () => {},
     rawTokenFunction: () => {},
     mqttPublishFunction: () => {},
-    mqttSubscribeFunction: () => {}
+    mqttSubscribeFunction: () => {},
 };
 
 function setConfigData(data) {
@@ -40,11 +40,11 @@ function generateAnswer(answerIndex, ...args) {
     return configObject["answerFunction"](answerIndex, ...args);
 }
 
-function fail(err){
+function fail(err) {
     say(err);
 }
 
-function getAllOptions(){
+function getAllOptions() {
     return configObject["optionsFunction"]();
 }
 
@@ -52,8 +52,12 @@ function publishMQTT(topic = "", payload) {
     configObject["mqttPublishFunction"](topic, JSON.stringify(payload));
 }
 
-function subscribeMQTT(topic = "", callback = () => {}){
+function subscribeMQTT(topic = "", callback = () => {}) {
     configObject["mqttSubscribeFunction"](topic, callback);
+}
+
+function getRawToken(slotName) {
+    return configObject["rawTokenFunction"](slotName);
 }
 
 module.exports = {
@@ -63,5 +67,6 @@ module.exports = {
     fail,
     getAllOptions,
     publishMQTT,
-    subscribeMQTT
+    subscribeMQTT,
+    getRawToken,
 };
