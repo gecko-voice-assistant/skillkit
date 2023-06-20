@@ -22,6 +22,7 @@ let configObject = {
     rawTokenFunction: () => {},
     mqttPublishFunction: () => {},
     mqttSubscribeFunction: () => {},
+    dynamicSlotFunction: async () => {},
 };
 
 function setConfigData(data) {
@@ -60,6 +61,14 @@ function getRawToken(slotName) {
     return configObject["rawTokenFunction"](slotName);
 }
 
+async function registerSlot(skillName, slotName, alternatives = [], overwrite = true) {
+    return await configObject["dynamicSlotFunction"](
+        `${skillName}_${slotName}`,
+        alternatives.length !== 0 ? alternatives : ["_"],
+        overwrite
+    );
+}
+
 module.exports = {
     setConfigData,
     say,
@@ -69,4 +78,5 @@ module.exports = {
     publishMQTT,
     subscribeMQTT,
     getRawToken,
+    registerSlot,
 };
